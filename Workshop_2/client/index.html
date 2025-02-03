@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 - Consume API</title>
+  <script>
+    const completed = (response) => {
+      const data = JSON.parse(response.target.responseText);
+      const selectedCurrency = document.getElementById('currencySelect').value;
+      let output = '';
+      switch (selectedCurrency) {
+        case 'usd':
+          output = `
+           Tipo de Cambio Dolares Compra: ${data.TipoCompraDolares}<br>
+           Tipo de Cambio Dolares Venta: ${data.TipoVentaDolares}
+          `;
+          break;
+        case 'eur':
+          output = `
+            Tipo de Cambio Euro Compra: ${data.TipoCompraEuros}<br>
+            Tipo de Cambio Euro Venta: ${data.TipoVentaEuros}
+          `;
+          break;
+        case 'all':
+          output = `
+             Tipo de Cambio Dolares Compra: ${data.TipoCompraDolares} <br>
+             Tipo de Cambio Dolares Venta: ${data.TipoVentaDolares} <br>
+             Tipo de Cambio Euro Compra: ${data.TipoCompraEuros} <br>
+             Tipo de Cambio Euro Venta: ${data.TipoVentaEuros}
+            `;
+          break;
+        default:
+          output = 'Selecciona una moneda valida.';
+
+      }
+      document.getElementById('result').innerHTML = output;
+    };
+
+    const error = () => console.log(this.responseText);
+
+    function getExchange() {
+      const ajaxRequest = new XMLHttpRequest(); //AJAX
+      ajaxRequest.addEventListener("load", completed);
+      ajaxRequest.addEventListener("error", error);
+      ajaxRequest.open("GET", "http://localhost:3001/tipocambio");
+      ajaxRequest.send();
+    }
+  </script>
+</head>
+
+<body>
+  <button onclick="getExchange();">Tipo de Cambio</button>
+  <select id="currencySelect">
+    <option value="usd"> USD </option>
+    <option value="eur"> EUR </option>
+    <option value="all"> Todos </option>
+  </select>
+  <h3>Results:</h3>
+  <div id="result"></div>
+
+</body>
+
+</html>
