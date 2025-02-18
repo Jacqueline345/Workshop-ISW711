@@ -15,10 +15,16 @@ app.use(cors({
   methods: "*"
 }));
 const { teacherCreate,teacherGet, teacherUpdate, deleteTeacher } = require('./controllers/teacherController');
+const { courseGet, coursePost, coursePut, courseDelete } = require('./controllers/courseController');
 
 app.post('/teachers', teacherCreate);
 app.get("/teachers",teacherGet);
 app.put('/teachers', teacherUpdate);
 app.delete('/teachers', deleteTeacher);
+
+app.post('/courses', coursePost);
+app.get('/courses', courseGet);
+app.put('/courses', coursePut);
+app.delete('/courses', courseDelete);
 
 app.listen(3001, () => console.log(`Example app listening on port 3001!`))

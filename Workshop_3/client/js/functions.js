@@ -96,4 +96,27 @@ async function createTeacher() {
       alert("Hubo un problema al eliminar el profesor");
     }
   }
+  async function createTeacher() {
+    let teacher =  {
+      first_name: document.getElementById('first_name').value,
+      last_name: document.getElementById('last_name').value,
+      cedula: document.getElementById('cedula').value,
+      age: document.getElementById('age').value
+    }
   
+    const response = await fetch("http://localhost:3001/teachers",{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(teacher)
+    });
+  
+    if(response && response.status == 201){
+      teacher = await response.json();
+      console.log('Teacher saved', teacher);
+      alert('Usuario guardado');
+    } else {
+      alert("Shit's on fire! ");
+    }
+  }
