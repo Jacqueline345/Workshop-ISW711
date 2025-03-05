@@ -49,7 +49,7 @@ const courseGet = (req, res) => {
       });
   } else {
     // get all teachers
-    Course.find()
+    Course.find().populate('teacher')
       .then(course => {
         res.json(course);
       })

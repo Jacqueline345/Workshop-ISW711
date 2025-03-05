@@ -6,7 +6,7 @@ const courses = new mongoose.Schema({
   code: { type: Number },
   description : { type: String},
   credits: { type: Number },
-  teacher: { type : mongoose.Schema.Types.ObjectId, ref: 'Teacher'}
+  teacher: { type : mongoose.Schema.Types.ObjectId, ref: 'teachers'}
 });
 
 module.exports = mongoose.model('Course', courses);

@@ -101,7 +101,7 @@
                                 <td>${course.code}</td>
                                 <td>${course.description}</td>
                                 <td>${course.credits}</td>
-                                <td>${course.teacher}</td>
+                                <td>${course.teacher.first_name}</td>
                                 <td>
                                     <button class="btn btn-warning btn-sm" onclick="editTeacher('${course._id}', '${course.name}', '${course.code}', '${course.description}', '${course.credits}', '${course.teacher}')">Edit</button>
                                     <button class="btn btn-danger btn-sm" onclick="deleteTeacher('${course._id}')">Delete</button>
